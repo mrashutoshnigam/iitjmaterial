@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognitive Computing and AI Concepts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h2 {
+            color: #2c3e50;
+        }
+        .question {
+            margin-bottom: 10px;
+            cursor: pointer;
+            padding: 10px;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .answer {
+            display: none;
+            padding: 10px;
+            margin-top: 5px;
+            background-color: #fafafa;
+            border-left: 3px solid #3498db;
+        }
+    </style>
+    <script>
+        function toggleAnswer(id) {
+            const answer = document.getElementById(id);
+            if (answer.style.display === "none" || answer.style.display === "") {
+                answer.style.display = "block";
+            } else {
+                answer.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Cognitive Computing and AI Concepts</h1>
+
+    <!-- Question 1 -->
+    <div class="question" onclick="toggleAnswer('answer1')">
+        <h2>Question 1: What are the pros and cons of cognitive computing?</h2>
+    </div>
+    <div class="answer" id="answer1">
+        <p><strong>Pros:</strong></p>
+        <ul>
+            <li>Can handle complex tasks that traditionally required human intelligence.</li>
+            <li>Ability to process and learn from large amounts of data.</li>
+            <li>Operates 24/7 without fatigue.</li>
+            <li>Augments human capabilities in decision-making.</li>
+        </ul>
+        <p><strong>Cons:</strong></p>
+        <ul>
+            <li>Tasks easy for humans can be very difficult for cognitive systems ("Moravec's Paradox").</li>
+            <li>Challenges in true understanding versus pattern matching.</li>
+            <li>May be subject to algorithmic bias.</li>
+            <li>May have issues with goal/reward alignment.</li>
+        </ul>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="question" onclick="toggleAnswer('answer2')">
+        <h2>Question 2: Do you know about any real-world applications of AI?</h2>
+    </div>
+    <div class="answer" id="answer2">
+        <ul>
+            <li><strong>Vision and Image Processing:</strong> OCR, face detection, vehicle safety systems, visual search, image generation.</li>
+            <li><strong>Natural Language Processing:</strong> Text-to-speech, machine translation, ChatGPT, etc.</li>
+            <li><strong>Robotics:</strong> Mars rovers, autonomous vehicles, robot pets, personal assistants.</li>
+            <li><strong>Smart Systems:</strong> Intelligent thermostats, spam filters, automated taxi systems.</li>
+        </ul>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="question" onclick="toggleAnswer('answer3')">
+        <h2>Question 3: Let us examine the rationality of various vacuum-cleaner agent functions.</h2>
+    </div>
+    <div class="answer" id="answer3">
+        <p>A rational agent selects actions that maximize its expected performance measure. For the vacuum-cleaner agent:</p>
+        <ol>
+            <li><strong>Simple Vacuum-Cleaner Rationality:</strong></li>
+                - Perceives location and dirt status (e.g., [A, Dirty]).<br/>
+                - Actions available: Left, Right, Suck, NoOp.<br/>
+                - Rational if it chooses Suck when there's dirt and moves to explore other squares when clean.
+            
+            <li><strong>Movement Costs One Point:</strong></li>
+                - Maintains internal state (model-based reflex agent).<br/>
+                - Balances movement cost against cleaning benefit.<br/>
+                - Performance measure accounts for cleanliness and movement costs.
+            
+            <li><strong>Dynamic Environments:</strong></li>
+                - Learning becomes crucial.<br/>
+                - The agent should learn:
+                    * Dirt accumulation patterns.
+                    * Environment geography.
+                    * Optimal cleaning strategies.
+        </ol>
+    </div>
+
+     <!-- Question 4 -->
+    <div class="question" onclick="toggleAnswer('answer4')">
+        <h2>Question 4: Define the following terms...</h2>
+    </div>
+    <div class="answer" id="answer4">
+        <ol>
+            <li><strong>Agent:</strong> An entity that perceives its environment through sensors and acts upon it through actuators.</li>
+            <li><strong>Agent Function:</strong> Maps percept sequences to actions (`f: P* → A`).</li>
+            <li><strong>Agent Program:</strong> The concrete implementation of the agent function that runs on physical architecture.</li>
+            <li><strong>Rationality:</strong> A rational agent selects actions maximizing expected performance based on percepts and knowledge.</li>
+            <li><strong>Autonomy:</strong> The ability to operate independently without human intervention.</li>
+            <li><strong>Reflex Agent:</strong> Uses simple condition-action rules without internal state or memory.</li>
+            <li><strong>Model-Based Agent:</strong> Maintains internal state to track aspects of the environment using a transition model.</li>
+            <li><strong>Goal-Based Agent:</strong> Plans actions to achieve explicit goals.</li>
+            <li><strong>Utility-Based Agent:</strong> Assigns utility values to states and maximizes expected utility.</li>
+            <li><strong>Learning Agent:</strong> Improves performance over time through learning mechanisms (critic, learning element, problem generator).</li>
+        </ol>
+    </div>
+
+    <!-- Question 5 -->
+    <div class="question" onclick="toggleAnswer('answer5')">
+        <h2>Question 5: Is a thermostat an instance of a simple reflex agent, a model-based reflex agent, or a goal-based agent?</h2>
+    </div>
+    <div class="answer" id="answer5">
+        <p>The thermostat is an instance of a <strong>simple reflex agent</strong>, as it operates on fixed condition-action rules:</p>
+        <ol>
+            <li><strong>Rules:</strong></li>
+                - `IF (temperature ≤ setting - 3) THEN turn_on_furnace`.<br/>
+                - `IF (temperature ≥ setting + 3) THEN turn_off_furnace`.
+            
+            <li><strong>Characteristics of Simple Reflex Agents:</strong></li>
+                - No internal state maintenance required.<br/>
+                - Direct mapping from current percept to action.
+            
+            <li><strong>Contrasts with Other Agents:</strong></li>
+                - Unlike model-based agents: No state tracking or prediction.<br/>
+                - Unlike goal-based agents: No reasoning about future states.<br/>
+                - Unlike utility-based agents: No evaluation of outcomes.
+        </ol>
+    </div>
+
+    <!-- Question 6 -->
+    <div class="question" onclick="toggleAnswer('answer6')">
+        <h2>Question 6: Your goal is to navigate a robot out of a maze...</h2>
+    </div>
+    <div class="answer" id="answer6">
+        <p><strong>Using intelligent agent concepts:</strong></p>
+        <ol>
+            <li><strong>Initial Problem Formulation:</strong></li>
+                - State space includes robot's location `(x,y)`, orientation (North/East/South/West), actions (Turn/Move Forward), and percepts (Wall detection).<br/>
+                - Performance measure: Steps to exit.
+            
+            <li><strong>Intersection-Based Reformulation:</strong></li>
+                - Reduced state space by tracking only intersection points and orientation.
+            
+            <li><strong>Direction-Based Reformulation:</strong></li>
+                - Further reduced state space by tracking only intersection points without orientation.
+            
+            <li><strong>Real-World Simplifications:</strong></li>
+                Assumptions based on environment properties include fully observable, deterministic movements, discrete space, static environment, and no physical constraints like momentum or friction.
+        </ol>
+    </div>
+    </body>
+</html>
