@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+
+    <div class="max-w-lg mx-auto bg-white p-6 rounded shadow">
+        <h2 class="text-xl font-bold mb-4">Assignment Tracker</h2>
+        <ul id="assignmentList" class="space-y-2"></ul>
+    </div>
+
+    <script>
+        const assignments = [
+            { name: "ODS", dueDate: "2025-02-23" },
+            { name: "DSA", dueDate: "2025-02-23" },
+            { name: "ML", dueDate: "2025-03-01" }
+        ];
+
+        function getColor(daysLeft) {
+            if (daysLeft < 4) return "bg-red-600 text-white";  // Red
+            if (daysLeft < 7) return "bg-orange-700 text-white"; // Dark Orange
+            if (daysLeft < 10) return "bg-orange-500 text-white"; // Orange
+            if (daysLeft < 12) return "bg-yellow-400";  // Yellow
+            return "bg-green-500 text-white";  // Green
+        }
+
+        function loadAssignments() {
+            const assignmentList = document.getElementById("assignmentList");
+            const today = new Date();
+
+            assignments.forEach(({ name, dueDate }) => {
+                const due = new Date(dueDate);
+                const daysLeft = Math.ceil((due - today) / (1000 * 60 * 60 * 24));
+                const color = getColor(daysLeft);
+
+                const li = document.createElement("li");
+                li.className = `p-3 rounded ${color}`;
+                li.innerHTML = `<b>${name}</b> - ${daysLeft} days left`;
+
+                assignmentList.appendChild(li);
+            });
+        }
+
+        loadAssignments();
+    </script>
+
+</body>
+</html>
