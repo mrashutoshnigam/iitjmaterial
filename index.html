@@ -25,21 +25,21 @@
 
     <script>
         const quizzes = [
-            { name: "Quiz 1", dueDate: "2025-02-22" },
-            { name: "Quiz 2", dueDate: "2025-02-25" }
+            { name: "DSA", dueDate: "2025-02-23" },
+            { name: "AI", dueDate: "2025-03-02" }
         ];
 
         const assignments = [
             { name: "ODS", dueDate: "2025-02-23" },
-            { name: "DSA", dueDate: "2025-02-23" },
+            { name: "DSA", dueDate: "2025-02-25" },
             { name: "ML", dueDate: "2025-03-01" }
         ];
 
         function getColor(daysLeft) {
             if (daysLeft < 4) return "bg-red-600 text-white";  // Red
-            if (daysLeft < 7) return "bg-orange-700 text-white"; // Dark Orange
-            if (daysLeft < 10) return "bg-orange-500 text-white"; // Orange
-            if (daysLeft < 12) return "bg-yellow-400";  // Yellow
+            if (daysLeft < 7) return "bg-orange-600 text-white"; // Dark Orange
+            if (daysLeft < 10) return "bg-orange-400 text-white"; // Orange
+            if (daysLeft < 12) return "bg-yellow-300";  // Yellow
             return "bg-green-500 text-white";  // Green
         }
 
