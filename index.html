@@ -8,12 +8,27 @@
 </head>
 <body class="bg-gray-100 p-6">
 
-    <div class="max-w-lg mx-auto bg-white p-6 rounded shadow">
-        <h2 class="text-xl font-bold mb-4">Assignment Tracker</h2>
-        <ul id="assignmentList" class="space-y-2"></ul>
+    <div class="max-w-2xl mx-auto bg-white p-6 rounded shadow">
+        <h2 class="text-xl font-bold mb-4 text-center">Assignment Tracker</h2>
+
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <h3 class="text-lg font-semibold mb-2">Quizzes</h3>
+                <ul id="quizList" class="space-y-2"></ul>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-2">Assignments</h3>
+                <ul id="assignmentList" class="space-y-2"></ul>
+            </div>
+        </div>
     </div>
 
     <script>
+        const quizzes = [
+            { name: "DSA", dueDate: "2025-02-23" },
+            { name: "AI", dueDate: "2025-03-02" }
+        ];
+
         const assignments = [
             { name: "ODS", dueDate: "2025-02-23" },
             { name: "DSA", dueDate: "2025-02-23" },
@@ -28,11 +43,11 @@
             return "bg-green-500 text-white";  // Green
         }
 
-        function loadAssignments() {
-            const assignmentList = document.getElementById("assignmentList");
+        function loadTasks(listId, tasks) {
+            const list = document.getElementById(listId);
             const today = new Date();
 
-            assignments.forEach(({ name, dueDate }) => {
+            tasks.forEach(({ name, dueDate }) => {
                 const due = new Date(dueDate);
                 const daysLeft = Math.ceil((due - today) / (1000 * 60 * 60 * 24));
                 const color = getColor(daysLeft);
@@ -41,11 +56,12 @@
                 li.className = `p-3 rounded ${color}`;
                 li.innerHTML = `<b>${name}</b> - ${daysLeft} days left`;
 
-                assignmentList.appendChild(li);
+                list.appendChild(li);
             });
         }
 
-        loadAssignments();
+        loadTasks("quizList", quizzes);
+        loadTasks("assignmentList", assignments);
     </script>
 
 </body>
