@@ -25,18 +25,17 @@
 
     <script>
         const quizzes = [
-            { name: "DSA", dueDate: "2025-02-23" },
-            { name: "AI", dueDate: "2025-03-02" }
+            { name: "AI", dueDate: "2025-03-09" }
         ];
 
         const assignments = [
             { name: "ODS", dueDate: "2025-02-23" },
-            { name: "DSA", dueDate: "2025-02-25" },
+            { name: "DSA", dueDate: "2025-02-24" },
             { name: "ML", dueDate: "2025-03-01" }
         ];
 
         function getColor(daysLeft) {
-            if (daysLeft < 4) return "bg-red-600 text-white";  
+            if (daysLeft < 3) return "bg-red-600 text-white";  
             if (daysLeft < 7) return "bg-orange-700 text-white"; 
             if (daysLeft < 10) return "bg-orange-500 text-white"; 
             if (daysLeft < 12) return "bg-yellow-400";  
@@ -46,8 +45,14 @@
         function formatDate(dateStr) {
             const date = new Date(dateStr);
             const options = { day: "2-digit", month: "short" };
-            return date.toLocaleDateString("en-GB", options); // Example: "23 Feb"
+            return date.toLocaleDateString("en-GB", options);
         }
+function formatDayLeft(dayLeft) {
+    if (dayLeft == 0) {
+        return "Today";
+    }
+    return `${dayLeft} days`;
+}
 
         function loadTasks(listId, tasks) {
             const list = document.getElementById(listId);
@@ -55,7 +60,7 @@
 
             tasks.forEach(({ name, dueDate }, index) => {
                 const due = new Date(dueDate);
-                let daysLeft = Math.ceil((due - today) / (1000 * 60 * 60 * 24)) - 1;
+                let daysLeft = Math.ceil((due - today) / (1000 * 60 * 60 * 24));
                 const color = getColor(daysLeft);
 
                 const li = document.createElement("li");
@@ -70,7 +75,7 @@
     <div class="text-sm">${formatDate(dueDate)}</div>
 </div>
 <div class="flex items-center justify-center w-16 h-14 font-bold text-sm">
-    ${daysLeft} <br> days
+    ${formatDayLeft(daysLeft)}
 </div>
 
                 `;
