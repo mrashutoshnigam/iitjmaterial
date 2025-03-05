@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IITJ course Task Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+
+    <div class="max-w-2xl mx-auto bg-white p-6 rounded shadow ">
+        <h1 class="text-xl font-bold mb-4 text-center  pb-3 border-b border-blue-500">Task Tracker</h1>
+
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <h3 class="text-lg font-semibold mb-2 pb-2 border-b border-gray-300">Quizzes</h3>
+<ul id="quizList" class="space-y-2"></ul>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-2 pb-2 border-b border-gray-300">Assignments</h3>
+<ul id="assignmentList" class="space-y-2"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const quizzes = [
+            { name: "AI-2nd", dueDate: "2025-03-09" },
+             { name: "AI-3rd (Tentative)", dueDate: "2025-03-30" }
+        ];
+
+        const assignments = [
+        ];
+
+        function getColor(daysLeft) {
+            if (daysLeft < 3) return "bg-red-600 text-white";  
+            if (daysLeft < 7) return "bg-orange-700 text-white"; 
+            if (daysLeft < 10) return "bg-orange-500 text-white"; 
+            if (daysLeft < 12) return "bg-yellow-400";  
+            return "bg-green-500 text-white";  
+        }
+
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            const options = { day: "2-digit", month: "short" };
+            return date.toLocaleDateString("en-GB", options);
+        }
+function formatDayLeft(dayLeft) {
+    if (dayLeft == 0) {
+        return "Today";
+    }
+    return `${dayLeft} days`;
+}
+
+        function loadTasks(listId, tasks) {
+            const list = document.getElementById(listId);
+            const today = new Date();
+
+            tasks.forEach(({ name, dueDate }, index) => {
+                const due = new Date(dueDate);
+                let daysLeft = Math.ceil((due - today) / (1000 * 60 * 60 * 24));
+                const color = getColor(daysLeft);
+
+                const li = document.createElement("li");
+                li.className = `flex items-center rounded overflow-hidden shadow ${color}`;
+
+                li.innerHTML = `
+                    <div class="flex items-center justify-center w-12 h-14 font-bold text-lg border-r border-white">
+    ${index + 1}
+</div>
+<div class="flex-1 px-3 py-2 border-r border-white">
+    <div class="text-lg font-bold">${name}</div>
+    <div class="text-sm">${formatDate(dueDate)}</div>
+</div>
+<div class="flex items-center justify-center w-16 h-14 font-bold text-sm">
+    ${formatDayLeft(daysLeft)}
+</div>
+
+                `;
+
+                list.appendChild(li);
+            });
+        }
+
+        loadTasks("quizList", quizzes);
+        loadTasks("assignmentList", assignments);
+    </script>
+
+</body>
+</html>
